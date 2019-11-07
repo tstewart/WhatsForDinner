@@ -1,2 +1,2 @@
-# WhatsForDinner
-A meal recommendation application
+# Whats for Dinner?
+A meal recommendation application for Android
