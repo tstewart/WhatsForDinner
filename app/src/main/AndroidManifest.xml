@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="io.github.tstewart.whatsfordinner" >
+    package="io.github.tstewart.whatsfordinner">
 
     <application
         android:allowBackup="true"
@@ -8,13 +8,32 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme" >
-        <activity android:name=".MainActivity" >
+        android:theme="@style/AppTheme">
+        <activity
+            android:name=".RecipePopupActivity"
+            android:label="@string/title_activity_recipe_popup"
+            android:theme="@style/AppTheme.NoActionBar"></activity>
+        <activity android:name=".GetRecipeActivity" />
+        <activity android:name=".AddFoodActivity" />
+        <activity android:name=".SettingsActivity" />
+        <activity
+            android:name=".SignUpActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_sign_up"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".IntroActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_intro"
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 

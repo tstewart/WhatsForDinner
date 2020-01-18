@@ -1,3 +1,49 @@
 <resources>
     <string name="app_name">What\'s for Dinner</string>
+
+    <string name="title_activity_intro">What\'s for Dinner?</string>
+    <string name="description_activity_intro">A recipe recommendation application based on your nutritional intake</string>
+
+
+    <!-- Sign up / settings activity -->
+    <string name="title_activity_sign_up">Sign Up</string>
+    <string name="description_activity_sign_up">Please input your information in order for us to provide accurate calorie and nutrition requirements</string>
+    <string name="age_input">Age</string>
+    <string name="gender_input">Biological Gender</string>
+    <string name="gender_input_male">Male</string>
+    <string name="gender_input_female">Female</string>
+    <string name="height_input">Height (cm)</string>
+    <string name="weight_input">Weight (kg)</string>
+    <string name="btnSubmit">Submit</string>
+
+    <!-- Main activity -->
+    <string name="btnAddFood">Add Food</string>
+    <string name="btnGetRecipe">Get Recipe</string>
+
+    <string name="currentNutrients">Your current nutrients</string>
+    <string name="nutritionCalorieTitle">Calories</string>
+    <string name="nutritionCarbTitle">Carbohydrates</string>
+    <string name="nutritionFatTitle">Fat</string>
+    <string name="nutritionEnergyTitle">Energy</string>
+    <string name="nutritionProteinTitle">Protein</string>
+
+    <!-- Add food activity -->
+    <string name="enterFood">Enter a food</string>
+    <string name="btnSearch">Search</string>
+    <string name="selectFood">Select a food</string>
+    <string name="btnAddToFoods">Add to foods</string>
+
+    <!-- Get recipe activity -->
+    <string name="preferredIngredient">Enter preferred ingredient</string>
+
+    <!-- Settings activity -->
+    <string name="btnUpdate">Update</string>
+    <string name="title_activity_recipe_popup">RecipePopupActivity</string>
+
+    <!-- Recipe popup activity -->
+    <string name="suggestedRecipe">Here\'s what we suggest</string>
+    <string name="btnNewRecipe">I want something else</string>
+    <string name="btnConfirmRecipe">Perfect!</string>
+
 </resources>
+
