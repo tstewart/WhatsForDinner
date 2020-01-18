@@ -14,7 +14,7 @@
             android:label="@string/title_activity_recipe_popup"
             android:theme="@style/AppTheme.NoActionBar"></activity>
         <activity android:name=".GetRecipeActivity" />
-        <activity android:name=".AddFood" />
+        <activity android:name=".AddFoodActivity" />
         <activity android:name=".SettingsActivity" />
         <activity
             android:name=".SignUpActivity"
@@ -25,13 +25,15 @@
             android:name=".IntroActivity"
             android:configChanges="orientation|keyboardHidden|screenSize"
             android:label="@string/title_activity_intro"
-            android:theme="@android:style/Theme.NoTitleBar.Fullscreen" />
-        <activity android:name=".MainActivity">
+            android:theme="@android:style/Theme.NoTitleBar.Fullscreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".MainActivity">
+
         </activity>
     </application>
 
