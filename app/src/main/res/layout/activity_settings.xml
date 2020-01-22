@@ -57,7 +57,7 @@
                     android:text="@string/gender_input" />
 
                 <RadioGroup
-                    android:id="@+id/genderInput"
+                    android:id="@+id/settings_genderInput"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="32dp"
@@ -65,13 +65,13 @@
 
 
                     <RadioButton
-                        android:id="@+id/gender-male"
+                        android:id="@+id/settings_gender_male"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gender_input_male" />
 
                     <RadioButton
-                        android:id="@+id/gender-female"
+                        android:id="@+id/settings_gender_female"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gender_input_female" />

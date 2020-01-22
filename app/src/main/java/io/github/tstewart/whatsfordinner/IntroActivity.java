@@ -4,6 +4,7 @@ import android.annotation.SuppressLint;
 
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.tstewart.whatsfordinner.user.UserData;
 
 import android.app.Activity;
 import android.content.Intent;
@@ -27,8 +28,14 @@ public class IntroActivity extends Activity {
          * and close this Splash-Screen after some seconds.*/
         new Handler().postDelayed(() -> {
             /* Create an Intent that will start the Menu-Activity. */
-            Intent signUpIntent = new Intent(IntroActivity.this, SignUpActivity.class);
-            IntroActivity.this.startActivity(signUpIntent);
+            if(UserData.getInstance().getInfo() != null) {
+                Intent mainActivity = new Intent(IntroActivity.this, MainActivity.class);
+                IntroActivity.this.startActivity(mainActivity);
+            }
+            else {
+                Intent signUpIntent = new Intent(IntroActivity.this, SignUpActivity.class);
+                IntroActivity.this.startActivity(signUpIntent);
+            }
             IntroActivity.this.finish();
         }, INTRO_DISPLAY_LENGTH);
     }
