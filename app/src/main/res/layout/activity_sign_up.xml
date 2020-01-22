@@ -113,13 +113,13 @@
 
 
                     <RadioButton
-                        android:id="@+id/gender-male"
+                        android:id="@+id/gender_male"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gender_input_male" />
 
                     <RadioButton
-                        android:id="@+id/gender-female"
+                        android:id="@+id/gender_female"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:text="@string/gender_input_female" />

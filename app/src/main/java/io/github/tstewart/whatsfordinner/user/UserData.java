@@ -6,12 +6,16 @@ import io.github.tstewart.NutritionCalculator.UserInfo;
 import io.github.tstewart.NutritionCalculator.UserNutrition;
 
 public class UserData implements Serializable {
+
+    static final UserData instance = new UserData();
+
     private UserInfo info;
     private UserNutrition nutrition;
 
-    public UserData(UserInfo info, UserNutrition nutrition) {
-        this.info = info;
-        this.nutrition = nutrition;
+    private UserData() { }
+
+    public static UserData getInstance() {
+        return instance;
     }
 
     public UserInfo getInfo() {
