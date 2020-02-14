@@ -16,7 +16,7 @@ import android.view.View;
 
 public class IntroActivity extends Activity {
 
-    final long INTRO_DISPLAY_LENGTH = 4000;
+    final long INTRO_DISPLAY_LENGTH = 3000;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

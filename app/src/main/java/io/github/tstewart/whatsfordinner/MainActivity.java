@@ -1,6 +1,8 @@
 package io.github.tstewart.whatsfordinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.tstewart.NutritionCalculator.strategies.NutritionCalculationStrategy;
+import io.github.tstewart.whatsfordinner.user.UserData;
 import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
 import android.app.Activity;
@@ -10,6 +12,7 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -23,6 +26,13 @@ public class MainActivity extends AppCompatActivity {
         
         Button getRecipe = findViewById(R.id.getRecipe);
         getRecipe.setOnClickListener(this::onGetRecipeButtonClick);
+
+        if(UserData.getInstance().getInfo() != null) {
+            NutritionCalculationStrategy strategy = new NutritionCalculationStrategy();
+            strategy.calculateNutritionalInformation(UserData.getInstance().getInfo());
+            System.out.println(UserData.getInstance().getInfo().getUserNutrition().getCaloriesRequired());
+            Toast.makeText(this, UserData.getInstance().getNutrition().getCaloriesRequired() + "", Toast.LENGTH_LONG).show();
+        }
     }
 
     private void onGetRecipeButtonClick(View view) {

@@ -31,7 +31,7 @@
     <string name="enterFood">Enter a food</string>
     <string name="btnSearch">Search</string>
     <string name="selectFood">Select a food</string>
-    <string name="btnAddToFoods">Add to foods</string>
+    <string name="addToFoodsConfirmation">Are you sure you\'d like to add this food?</string>
 
     <!-- Get recipe activity -->
     <string name="preferredIngredient">Enter preferred ingredient</string>
