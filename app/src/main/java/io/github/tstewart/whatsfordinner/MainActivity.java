@@ -1,18 +1,21 @@
 package io.github.tstewart.whatsfordinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.tstewart.CalorieLookup.nutrients.Carbohydrates;
+import io.github.tstewart.CalorieLookup.nutrients.Fat;
+import io.github.tstewart.CalorieLookup.nutrients.Fiber;
+import io.github.tstewart.CalorieLookup.nutrients.Protein;
 import io.github.tstewart.NutritionCalculator.strategies.NutritionCalculationStrategy;
 import io.github.tstewart.whatsfordinner.user.UserData;
 import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
-import android.app.Activity;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
-import android.widget.Toast;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -30,9 +33,15 @@ public class MainActivity extends AppCompatActivity {
         if(UserData.getInstance().getInfo() != null) {
             NutritionCalculationStrategy strategy = new NutritionCalculationStrategy();
             strategy.calculateNutritionalInformation(UserData.getInstance().getInfo());
-            System.out.println(UserData.getInstance().getInfo().getUserNutrition().getCaloriesRequired());
-            Toast.makeText(this, UserData.getInstance().getNutrition().getCaloriesRequired() + "", Toast.LENGTH_LONG).show();
         }
+
+        setNutrientRequirements();
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        setNutrientRequirements();
     }
 
     private void onGetRecipeButtonClick(View view) {
@@ -61,6 +70,24 @@ public class MainActivity extends AppCompatActivity {
             MainActivity.this.startActivity(settings);
         }
         return super.onOptionsItemSelected(item);
+    }
+
+    private void setNutrientRequirements() {
+
+        UserData instance = UserData.getInstance();
+
+        TextView calories = findViewById(R.id.nutrientCalorie);
+        TextView fat = findViewById(R.id.nutrientFat);
+        TextView fiber = findViewById(R.id.nutrientFiber);
+        TextView carbohydrates = findViewById(R.id.nutrientCarb);
+        TextView protein = findViewById(R.id.nutrientProtein);
+
+        calories.setText(String.format(getString(R.string.caloriePlaceholder), instance.getCaloriesEaten(), instance.getNutrition().getCaloriesRequired()));
+        fat.setText(String.format(getString(R.string.nutritionPlaceholder), instance.getNutrient(Fat.class), instance.getNutrition().getFatRequired()));
+        fiber.setText(String.format(getString(R.string.nutritionPlaceholder), instance.getNutrient(Fiber.class), instance.getNutrition().getFiberRequired()));
+        carbohydrates.setText(String.format(getString(R.string.nutritionPlaceholder), instance.getNutrient(Carbohydrates.class), instance.getNutrition().getCarbohydratesRequired()));
+        protein.setText(String.format(getString(R.string.nutritionPlaceholder), instance.getNutrient(Protein.class), instance.getNutrition().getProteinRequired()));
+
     }
 
 }

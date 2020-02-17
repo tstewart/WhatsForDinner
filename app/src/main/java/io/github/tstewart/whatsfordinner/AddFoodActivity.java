@@ -61,6 +61,8 @@ public class AddFoodActivity extends AppCompatActivity {
 
     private void onSearchButtonClicked(View view) {
 
+        clearListResponses();
+
         String requestString = foodRequestInput.getText().toString();
 
         // TODO add proper encoding of request
@@ -92,7 +94,11 @@ public class AddFoodActivity extends AppCompatActivity {
                 }
             }).execute(new FoodRequestParams(connection, apiRequest));
         }
+    }
 
+    private void clearListResponses() {
+        adapter.clear();
+        listItems.clear();
     }
 
     private void onItemClicked(AdapterView<?> adapterView, View view, int position, long id) {

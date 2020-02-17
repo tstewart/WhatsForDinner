@@ -24,8 +24,11 @@
     <string name="nutritionCalorieTitle">Calories</string>
     <string name="nutritionCarbTitle">Carbohydrates</string>
     <string name="nutritionFatTitle">Fat</string>
-    <string name="nutritionEnergyTitle">Energy</string>
+    <string name="nutritionFiberTitle">Fiber</string>
     <string name="nutritionProteinTitle">Protein</string>
+
+    <string name="caloriePlaceholder">%1$d / %2$d</string>
+    <string name="nutritionPlaceholder">%1$.2f / %2$.2f</string>
 
     <!-- Add food activity -->
     <string name="enterFood">Enter a food</string>
