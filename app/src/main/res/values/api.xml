@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <string name="appid">a</string>
-    <string name="appsecret"></string>
+    <string type="string" name="food_appid">da5ccccd</string>
+    <string type="string" name="food_appsecret">830de1530183470f64e9ef0f6352421e</string>
+    <string type="string" name="recipe_appid">b617efee</string>
+    <string type="string" name="recipe_appsecret">174c65055abaac50f2c1250191e46576</string>
 </resources>

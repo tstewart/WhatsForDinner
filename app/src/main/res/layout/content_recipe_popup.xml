@@ -33,13 +33,13 @@
             android:textStyle="bold" />
 
         <TextView
-            android:id="@+id/recipeNutrients"
+            android:id="@+id/recipeLink"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
 
         <TableRow
             android:layout_width="match_parent"
-            android:layout_height="match_parent" >
+            android:layout_height="wrap_content">
 
             <Button
                 android:id="@+id/button"

@@ -38,6 +38,7 @@
 
     <!-- Get recipe activity -->
     <string name="preferredIngredient">Enter preferred ingredient</string>
+    <string name="selectRecipe">Select a recipe</string>
 
     <!-- Settings activity -->
     <string name="btnUpdate">Update</string>

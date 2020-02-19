@@ -9,16 +9,16 @@ import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.error.APICallLimitReachedException;
 import io.github.tstewart.CalorieLookup.error.InvalidRequestException;
 
-public class FoodRequestAsync extends AsyncTask<FoodRequestParams, Void, JSONObject> {
+public class RequestAsync extends AsyncTask<RequestParams, Void, JSONObject> {
 
     public interface FoodRequestResult {
 
         void onReceiveResponse(JSONObject response);
     }
     @Override
-    protected JSONObject doInBackground(FoodRequestParams... foodRequestParams) {
-        EdamamConnection connection = foodRequestParams[0].getEdamamConnection();
-        APIRequest apiRequest = foodRequestParams[0].getRequest();
+    protected JSONObject doInBackground(RequestParams... requestParams) {
+        EdamamConnection connection = requestParams[0].getEdamamConnection();
+        APIRequest apiRequest = requestParams[0].getRequest();
 
         try {
             return connection.request(apiRequest);
@@ -33,7 +33,7 @@ public class FoodRequestAsync extends AsyncTask<FoodRequestParams, Void, JSONObj
     public FoodRequestResult delegate = null;
 
 
-    public FoodRequestAsync(FoodRequestResult delegate) {
+    public RequestAsync(FoodRequestResult delegate) {
         this.delegate = delegate;
     }
 

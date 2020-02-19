@@ -22,6 +22,10 @@ android {
     }
 }
 
+configurations.all {
+    resolutionStrategy.cacheChangingModulesFor 0, 'seconds'
+}
+
 repositories {
     jcenter()
     maven { url "https://jitpack.io" }

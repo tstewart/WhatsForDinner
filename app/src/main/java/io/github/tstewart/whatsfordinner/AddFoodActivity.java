@@ -5,32 +5,25 @@ import io.github.tstewart.CalorieLookup.APIRequest;
 import io.github.tstewart.CalorieLookup.Food;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.edamam.EdamamJSONParser;
-import io.github.tstewart.CalorieLookup.error.APICallLimitReachedException;
-import io.github.tstewart.CalorieLookup.error.InvalidRequestException;
 import io.github.tstewart.CalorieLookup.request.FoodRequest;
-import io.github.tstewart.whatsfordinner.async.FoodRequestAsync;
-import io.github.tstewart.whatsfordinner.async.FoodRequestParams;
+import io.github.tstewart.whatsfordinner.async.RequestAsync;
+import io.github.tstewart.whatsfordinner.async.RequestParams;
 import io.github.tstewart.whatsfordinner.user.UserData;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
-import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
-import android.widget.ProgressBar;
 
 import org.json.JSONException;
-import org.json.JSONObject;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class AddFoodActivity extends AppCompatActivity {
 
@@ -66,7 +59,7 @@ public class AddFoodActivity extends AppCompatActivity {
         String requestString = foodRequestInput.getText().toString();
 
         // TODO add proper encoding of request
-        if(!requestString.equals("") && requestString.matches("[a-zA-Z]+")) {
+        if(!requestString.equals("") && requestString.matches("[a-zA-Z ]+")) {
             String appId = getResources().getString(R.string.food_appid);
             String appSecret = getResources().getString(R.string.food_appsecret);
             EdamamConnection connection = new EdamamConnection(appId, appSecret);
@@ -78,7 +71,7 @@ public class AddFoodActivity extends AppCompatActivity {
             progressDialog.setMessage("Please wait...");
             progressDialog.show();
 
-            new FoodRequestAsync(response -> {
+            new RequestAsync(response -> {
                 EdamamJSONParser parser = new EdamamJSONParser();
                 try {
                     ArrayList<Food> foods = parser.parseFoodResponse(response);
@@ -92,7 +85,7 @@ public class AddFoodActivity extends AppCompatActivity {
                 } catch (JSONException e) {
                     e.printStackTrace();
                 }
-            }).execute(new FoodRequestParams(connection, apiRequest));
+            }).execute(new RequestParams(connection, apiRequest));
         }
     }
 

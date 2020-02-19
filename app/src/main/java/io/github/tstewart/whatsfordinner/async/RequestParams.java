@@ -3,11 +3,11 @@ package io.github.tstewart.whatsfordinner.async;
 import io.github.tstewart.CalorieLookup.APIRequest;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 
-public class FoodRequestParams {
+public class RequestParams {
     private EdamamConnection edamamConnection;
     private APIRequest request;
 
-    public FoodRequestParams(EdamamConnection edamamConnection, APIRequest request) {
+    public RequestParams(EdamamConnection edamamConnection, APIRequest request) {
         this.edamamConnection = edamamConnection;
         this.request = request;
     }
