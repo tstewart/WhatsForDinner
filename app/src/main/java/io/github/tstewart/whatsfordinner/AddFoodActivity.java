@@ -8,7 +8,9 @@ import io.github.tstewart.CalorieLookup.edamam.EdamamJSONParser;
 import io.github.tstewart.CalorieLookup.request.FoodRequest;
 import io.github.tstewart.whatsfordinner.async.RequestAsync;
 import io.github.tstewart.whatsfordinner.async.RequestParams;
+import io.github.tstewart.whatsfordinner.data.Serialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
+import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -20,9 +22,11 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import org.json.JSONException;
 
+import java.io.IOException;
 import java.util.ArrayList;
 
 public class AddFoodActivity extends AppCompatActivity {
@@ -102,6 +106,12 @@ public class AddFoodActivity extends AppCompatActivity {
 
                 UserData.getInstance().addNutrients(selectedFood.getNutritionalInfo());
                 UserData.getInstance().addCalories((int)Math.floor(selectedFood.getCalories()));
+
+                try {
+                    Serialize.serializeUser(this, UserData.getInstance());
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to save new food information to file.", Toast.LENGTH_LONG).show();
+                }
                 this.finish();
             }
         };

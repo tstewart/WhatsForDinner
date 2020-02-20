@@ -1,5 +1,8 @@
 package io.github.tstewart.whatsfordinner.user;
 
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -10,17 +13,36 @@ import io.github.tstewart.NutritionCalculator.UserNutrition;
 
 public class UserData implements Serializable {
 
-    private static final UserData instance = new UserData();
+    private static UserData instance;
 
-    private HashMap<Class<? extends Nutrient>, Double> nutrientsEaten = new HashMap<>();
+    private HashMap<Class<? extends Nutrient>, Double> nutrientsEaten;
     private int caloriesEaten = 0;
 
     private UserInfo info;
 
-    private UserData() { }
+    private UserData() {
+        if(nutrientsEaten == null) nutrientsEaten = new HashMap<>();
+    }
 
     public static UserData getInstance() {
+        if(instance == null) instance = new UserData();
         return instance;
+    }
+
+    private void writeObject(ObjectOutputStream stream) throws IOException {
+        stream.defaultWriteObject();
+    }
+
+    private void readObject(ObjectInputStream ois) throws IOException, ClassNotFoundException {
+        ois.defaultReadObject();
+        instance = this;
+    }
+
+    public Object readResolve() {
+        nutrientsEaten = getNutrientsEaten();
+        caloriesEaten = getCaloriesEaten();
+        info = getInfo();
+        return getInstance();
     }
 
     public UserInfo getInfo() {
