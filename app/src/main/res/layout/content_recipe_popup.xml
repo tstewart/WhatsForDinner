@@ -12,14 +12,6 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <TextView
-            android:id="@+id/suggestedRecipeTitle"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="@string/suggestedRecipe"
-            android:textAlignment="center"
-            android:textSize="24sp" />
-
         <ImageView
             android:id="@+id/suggestedRecipeImage"
             android:layout_width="match_parent"
@@ -42,16 +34,17 @@
             android:layout_height="wrap_content">
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/btnNewRecipe"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnNewRecipe" />
 
             <Button
-                android:id="@+id/button2"
+                android:id="@+id/btnRecipeSuccess"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/btnConfirmRecipe" />
+
         </TableRow>
 
     </LinearLayout>

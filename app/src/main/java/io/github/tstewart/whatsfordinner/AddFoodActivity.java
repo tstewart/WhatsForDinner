@@ -10,7 +10,6 @@ import io.github.tstewart.whatsfordinner.async.RequestAsync;
 import io.github.tstewart.whatsfordinner.async.RequestParams;
 import io.github.tstewart.whatsfordinner.data.Serialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
-import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -18,7 +17,6 @@ import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -36,7 +34,7 @@ public class AddFoodActivity extends AppCompatActivity {
 
     ArrayList<Food> listItems = new ArrayList<>();
 
-    ArrayAdapter<Food> adapter;
+    FoodListItemAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -52,7 +50,7 @@ public class AddFoodActivity extends AppCompatActivity {
         Button searchButton = findViewById(R.id.btnSearch);
         searchButton.setOnClickListener(this::onSearchButtonClicked);
 
-        adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, listItems);
+        adapter = new FoodListItemAdapter(this.getApplicationContext(), R.layout.list_view_food_item, listItems);
         foodList.setAdapter(adapter);
     }
 
