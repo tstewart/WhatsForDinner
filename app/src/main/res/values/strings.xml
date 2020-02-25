@@ -19,22 +19,27 @@
     <!-- Main activity -->
     <string name="btnAddFood">Add Food</string>
     <string name="btnGetRecipe">Get Recipe</string>
+    <string name="recentRecipeTitle">Your most recent recipe:</string>
 
     <string name="currentNutrients">Your current nutrients</string>
     <string name="nutritionCalorieTitle">Calories</string>
     <string name="nutritionCarbTitle">Carbohydrates</string>
     <string name="nutritionFatTitle">Fat</string>
-    <string name="nutritionEnergyTitle">Energy</string>
+    <string name="nutritionFiberTitle">Fiber</string>
     <string name="nutritionProteinTitle">Protein</string>
+
+    <string name="caloriePlaceholder">%1$d / %2$d</string>
+    <string name="nutritionPlaceholder">%1$.2f / %2$.2f</string>
 
     <!-- Add food activity -->
     <string name="enterFood">Enter a food</string>
     <string name="btnSearch">Search</string>
     <string name="selectFood">Select a food</string>
-    <string name="btnAddToFoods">Add to foods</string>
+    <string name="addToFoodsConfirmation">Are you sure you\'d like to add this food?</string>
 
     <!-- Get recipe activity -->
     <string name="preferredIngredient">Enter preferred ingredient</string>
+    <string name="selectRecipe">Select a recipe</string>
 
     <!-- Settings activity -->
     <string name="btnUpdate">Update</string>
@@ -44,6 +49,7 @@
     <string name="suggestedRecipe">Here\'s what we suggest</string>
     <string name="btnNewRecipe">I want something else</string>
     <string name="btnConfirmRecipe">Perfect!</string>
+    <string name="addRecipeConfirmation">Are you sure you\'d like to select this recipe? This will reset your calorie intake for the day.</string>
 
 </resources>
 

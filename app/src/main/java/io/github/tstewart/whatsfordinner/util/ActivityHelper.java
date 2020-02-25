@@ -9,8 +9,11 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
+
 import androidx.appcompat.app.AppCompatActivity;
 import io.github.tstewart.NutritionCalculator.UserInfo;
+import io.github.tstewart.whatsfordinner.data.Serialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
 
 public class ActivityHelper {
@@ -71,7 +74,14 @@ public class ActivityHelper {
 
         UserInfo user = new UserInfo(gender, age, weight, height);
         UserData.getInstance().setInfo(user);
-        Toast.makeText(context, user.getGender() + " " + user.getAge() + " " + user.getHeight() + " " + user.getWeight(), Toast.LENGTH_SHORT).show();
+
+        // Save data to file
+        try {
+            Serialize.serializeUser(context, UserData.getInstance());
+        } catch (IOException e) {
+            e.printStackTrace();
+            Toast.makeText(context, "Failed to save user data!", Toast.LENGTH_LONG).show();
+        }
     }
 
 }
