@@ -12,13 +12,18 @@ import io.github.tstewart.whatsfordinner.async.RequestAsync;
 import io.github.tstewart.whatsfordinner.async.RequestParams;
 import io.github.tstewart.whatsfordinner.user.UserData;
 
+import android.app.Activity;
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+
+import com.google.gson.Gson;
 
 import org.json.JSONException;
 
@@ -40,12 +45,27 @@ public class GetRecipeActivity extends AppCompatActivity {
         recipeRequestInput = findViewById(R.id.preferredIngredientInput);
 
         recipeList = findViewById(R.id.recipeList);
+        recipeList.setOnItemClickListener(this::onItemClicked);
 
         Button searchButton = findViewById(R.id.btnSearch);
         searchButton.setOnClickListener(this::onSearchButtonClicked);
 
         adapter = new ArrayAdapter<>(this, android.R.layout.simple_selectable_list_item, listItems);
         recipeList.setAdapter(adapter);
+    }
+
+    private void onItemClicked(AdapterView<?> adapterView, View view, int i, long l) {
+        Intent mainActivity = new Intent(this, RecipePopupActivity.class);
+
+        // Convert the recipe to a JSON format so that it can be passed to the new intent
+        Gson gson = new Gson();
+
+        Bundle args = new Bundle();
+        args.putString("recipe", gson.toJson(listItems.get(i)));
+
+        mainActivity.putExtras(args);
+
+        this.startActivity(mainActivity);
     }
 
     private void onSearchButtonClicked(View view) {

@@ -8,6 +8,7 @@ import io.github.tstewart.CalorieLookup.APIRequest;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.error.APICallLimitReachedException;
 import io.github.tstewart.CalorieLookup.error.InvalidRequestException;
+import io.github.tstewart.CalorieLookup.error.InvalidResponseException;
 
 public class RequestAsync extends AsyncTask<RequestParams, Void, JSONObject> {
 
@@ -25,6 +26,8 @@ public class RequestAsync extends AsyncTask<RequestParams, Void, JSONObject> {
         } catch (InvalidRequestException e) {
             e.printStackTrace();
         } catch (APICallLimitReachedException e) {
+            e.printStackTrace();
+        } catch (InvalidResponseException e) {
             e.printStackTrace();
         }
         return null;

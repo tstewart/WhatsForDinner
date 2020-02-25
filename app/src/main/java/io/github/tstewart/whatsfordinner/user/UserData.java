@@ -7,6 +7,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.HashMap;
 
+import io.github.tstewart.CalorieLookup.Recipe;
 import io.github.tstewart.CalorieLookup.nutrients.Nutrient;
 import io.github.tstewart.NutritionCalculator.UserInfo;
 import io.github.tstewart.NutritionCalculator.UserNutrition;
@@ -19,6 +20,7 @@ public class UserData implements Serializable {
     private int caloriesEaten = 0;
 
     private UserInfo info;
+    private Recipe recentRecipe;
 
     private UserData() {
         if(nutrientsEaten == null) nutrientsEaten = new HashMap<>();
@@ -96,5 +98,18 @@ public class UserData implements Serializable {
 
     public void setCaloriesEaten(int caloriesEaten) {
         this.caloriesEaten = caloriesEaten;
+    }
+
+    public void clearAllNutrients() {
+        this.nutrientsEaten.clear();
+        this.caloriesEaten = 0;
+    }
+
+    public void setRecentRecipe(Recipe recipe) {
+        this.recentRecipe = recipe;
+    }
+
+    public Recipe getRecentRecipe() {
+        return recentRecipe;
     }
 }

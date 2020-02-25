@@ -21,7 +21,7 @@
         <Button
             android:id="@+id/addFood"
             android:layout_width="381dp"
-            android:layout_height="133dp"
+            android:layout_height="100dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="0dp"
@@ -31,7 +31,7 @@
         <Button
             android:id="@+id/getRecipe"
             android:layout_width="381dp"
-            android:layout_height="133dp"
+            android:layout_height="100dp"
             android:layout_marginStart="0dp"
             android:layout_marginTop="0dp"
             android:layout_marginEnd="0dp"
@@ -50,7 +50,7 @@
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
+            android:layout_height="208dp"
             android:orientation="vertical">
 
             <TableRow
@@ -163,6 +163,25 @@
                     android:layout_height="wrap_content"
                     android:text="" />
             </TableRow>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/recentRecipeTitle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/recentRecipeTitle"
+                android:visibility="invisible" />
+
+            <TextView
+                android:id="@+id/recentRecipeLink"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:autoLink="web" />
         </LinearLayout>
 
     </LinearLayout>

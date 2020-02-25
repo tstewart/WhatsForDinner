@@ -19,6 +19,7 @@
     <!-- Main activity -->
     <string name="btnAddFood">Add Food</string>
     <string name="btnGetRecipe">Get Recipe</string>
+    <string name="recentRecipeTitle">Your most recent recipe:</string>
 
     <string name="currentNutrients">Your current nutrients</string>
     <string name="nutritionCalorieTitle">Calories</string>
@@ -48,6 +49,7 @@
     <string name="suggestedRecipe">Here\'s what we suggest</string>
     <string name="btnNewRecipe">I want something else</string>
     <string name="btnConfirmRecipe">Perfect!</string>
+    <string name="addRecipeConfirmation">Are you sure you\'d like to select this recipe? This will reset your calorie intake for the day.</string>
 
 </resources>
 
