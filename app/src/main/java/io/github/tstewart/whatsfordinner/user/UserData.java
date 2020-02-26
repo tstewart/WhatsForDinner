@@ -8,6 +8,7 @@ import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import io.github.tstewart.CalorieLookup.Recipe;
 import io.github.tstewart.CalorieLookup.nutrients.Nutrient;
@@ -73,6 +74,12 @@ public class UserData implements Serializable {
     public void addNutrients(ArrayList<Nutrient> nutrients) {
         for (int i = 0; i < nutrients.size(); i++) {
             addNutrient(nutrients.get(i));
+        }
+    }
+
+    public void addNutrients(Iterator<Nutrient> nutrients) {
+        while(nutrients.hasNext()) {
+            addNutrient(nutrients.next());
         }
     }
 

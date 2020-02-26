@@ -5,6 +5,7 @@ import io.github.tstewart.CalorieLookup.APIRequest;
 import io.github.tstewart.CalorieLookup.Food;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.edamam.EdamamJSONParser;
+import io.github.tstewart.CalorieLookup.nutrients.Nutrient;
 import io.github.tstewart.CalorieLookup.request.FoodRequest;
 import io.github.tstewart.whatsfordinner.async.RequestAsync;
 import io.github.tstewart.whatsfordinner.async.RequestParams;
@@ -105,7 +106,9 @@ public class AddFoodActivity extends AppCompatActivity {
             if(which == DialogInterface.BUTTON_POSITIVE) {
                 Food selectedFood = listItems.get(position);
 
-                UserData.getInstance().addNutrients(selectedFood.getNutritionalInfo());
+                Iterable<Nutrient> nutrients = selectedFood.getNutritionalInfo();
+
+                UserData.getInstance().addNutrients(nutrients.iterator());
                 UserData.getInstance().addCalories((int)Math.floor(selectedFood.getCalories()));
 
                 try {

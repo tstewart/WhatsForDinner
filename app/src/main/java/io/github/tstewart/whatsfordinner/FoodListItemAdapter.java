@@ -8,6 +8,7 @@ import android.widget.ArrayAdapter;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 import androidx.annotation.NonNull;
 import io.github.tstewart.CalorieLookup.Food;
@@ -44,20 +45,20 @@ class FoodListItemAdapter extends ArrayAdapter<Food> {
             title.setText("Name: " + food.getFoodName());
             brand.setText("Brand: " + food.getBrandName());
             calories.setText("Calories: " + (int)Math.floor(food.getCalories()));
-            nutrients.setText("Nutrients: " + getNutrientsAsString(food.getNutritionalInfo()));
+            nutrients.setText("Nutrients: " + getNutrientsAsString(food.getNutritionalInfo().iterator()));
         }
 
         return v;
     }
 
-    private String getNutrientsAsString(ArrayList<Nutrient> nutrients) {
+    private String getNutrientsAsString(Iterator<Nutrient> nutrients) {
         StringBuilder nutrientString = new StringBuilder();
 
-        for (int i = 0; i < nutrients.size(); i++) {
-            Nutrient nutrient = nutrients.get(i);
+        while(nutrients.hasNext()) {
+            Nutrient nutrient = nutrients.next();
             nutrientString.append(nutrient.getClass().getSimpleName()).append(": ").append((int)Math.floor(nutrient.getAmount()));
 
-            if(nutrients.size() -1 != i) nutrientString.append(", ");
+            if(nutrients.hasNext()) nutrientString.append(", ");
 
         }
 
