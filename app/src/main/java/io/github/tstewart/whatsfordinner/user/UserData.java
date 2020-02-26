@@ -83,22 +83,7 @@ public class UserData implements Serializable {
     public void addCalories(int caloriesEaten) { this.caloriesEaten += caloriesEaten; }
 
     public void setNutrition(UserNutrition nutrition) {
-        // TODO delete
-        Method method = null;
-        Object userInfo = UserInfo.class;
-        try {
-            method = ((Class) userInfo).getDeclaredMethod("setUserNutrition", UserNutrition.class);
-        } catch (NoSuchMethodException e) {
-            e.printStackTrace();
-        }
-        method.setAccessible(true);
-        try {
-            Object r = method.invoke(userInfo, nutrition);
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-        } catch (InvocationTargetException e) {
-            e.printStackTrace();
-        }
+        info.setUserNutrition(nutrition);
     }
 
     public HashMap<Class<? extends Nutrient>, Double> getNutrientsEaten() {
