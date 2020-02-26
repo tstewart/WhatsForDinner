@@ -9,7 +9,9 @@ import io.github.tstewart.NutritionCalculator.strategies.NutritionCalculationStr
 import io.github.tstewart.whatsfordinner.user.UserData;
 import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,9 +21,15 @@ import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
+    SharedPreferences prefs = null;
+    private final String packageId = "io.github.tstewart.whatsfordinner";
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        prefs = getSharedPreferences(packageId, MODE_PRIVATE);
+
         setContentView(R.layout.activity_main);
 
         Button addFood = findViewById(R.id.addFood);
@@ -50,6 +58,14 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         setNutrientRequirements();
+
+        if (prefs.getBoolean("firstrun", true)) {
+
+            AlertDialog.Builder builder = new AlertDialog.Builder(this);
+            builder.setMessage(getString(R.string.first_welcome_msg)).show();
+
+            prefs.edit().putBoolean("firstrun", false).apply();
+        }
     }
 
     private void onGetRecipeButtonClick() {

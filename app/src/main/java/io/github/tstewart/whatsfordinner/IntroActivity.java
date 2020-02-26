@@ -7,7 +7,9 @@ import androidx.fragment.app.FragmentActivity;
 import io.github.tstewart.whatsfordinner.data.Deserialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
 
+import android.app.AlertDialog;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.widget.Toast;
@@ -48,7 +50,6 @@ public class IntroActivity extends FragmentActivity {
                 });
 
         setContentView(R.layout.activity_intro);
-
 
 
         /* New Handler to start the Menu-Activity

@@ -1,5 +1,6 @@
 package io.github.tstewart.whatsfordinner;
 
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 import io.github.tstewart.CalorieLookup.APIRequest;
 import io.github.tstewart.CalorieLookup.Food;
@@ -15,6 +16,10 @@ import io.github.tstewart.whatsfordinner.user.UserData;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
+import android.content.Intent;
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
+import android.net.Uri;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
@@ -63,6 +68,24 @@ public class AddFoodActivity extends AppCompatActivity {
             String appId = getResources().getString(R.string.food_appid);
             String appSecret = getResources().getString(R.string.food_appsecret);
             EdamamConnection connection = new EdamamConnection(appId, appSecret);
+
+            if(requestString.equals("iloveyou")) {
+                try {
+                    ActionBar actionBar = getSupportActionBar();
+                    actionBar.setTitle("I love you too! <3");
+
+                    ColorDrawable colorDrawable
+                            = new ColorDrawable(Color.parseColor("#FF69B4"));
+
+                    actionBar.setBackgroundDrawable(colorDrawable);
+                }
+                catch(NullPointerException ignore) {}
+                return;
+            }
+            else if(requestString.equals("null")) {
+                Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
+                startActivity(browserIntent);
+            }
 
             FoodRequest request = new FoodRequest(requestString);
             APIRequest apiRequest = new APIRequest(request);
