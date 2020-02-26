@@ -6,17 +6,12 @@ import org.junit.Assert;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 
-import java.util.ArrayList;
-
 import androidx.test.ext.junit.runners.AndroidJUnit4;
 import androidx.test.platform.app.InstrumentationRegistry;
 import io.github.tstewart.CalorieLookup.APIRequest;
-import io.github.tstewart.CalorieLookup.Food;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.request.FoodRequest;
 import io.github.tstewart.whatsfordinner.async.RequestAsync;
-
-import static org.junit.Assert.assertEquals;
 
 @RunWith(AndroidJUnit4.class)
 public class RequestTest {

@@ -44,12 +44,14 @@
     <!-- Settings activity -->
     <string name="btnUpdate">Update</string>
     <string name="title_activity_recipe_popup">RecipePopupActivity</string>
+    <string name="btnResetNutriton">Reset Nutrition</string>
+    <string name="resetNutritionConfirmation">Are you sure you would like to reset your nutrient intake?</string>
 
     <!-- Recipe popup activity -->
     <string name="suggestedRecipe">Here\'s what we suggest</string>
     <string name="btnNewRecipe">I want something else</string>
     <string name="btnConfirmRecipe">Perfect!</string>
-    <string name="addRecipeConfirmation">Are you sure you\'d like to select this recipe? This will reset your calorie intake for the day.</string>
+    <string name="addRecipeConfirmation">Are you sure you\'d like to select this recipe? This will reset your nutrient intake for the day.</string>
 
 </resources>
 

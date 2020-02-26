@@ -1,10 +1,14 @@
 package io.github.tstewart.whatsfordinner;
 
 import androidx.appcompat.app.AppCompatActivity;
+import io.github.tstewart.CalorieLookup.Food;
 import io.github.tstewart.NutritionCalculator.UserInfo;
+import io.github.tstewart.whatsfordinner.data.Serialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
 import io.github.tstewart.whatsfordinner.util.ActivityHelper;
 
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.widget.Button;
@@ -12,6 +16,8 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
+
+import java.io.IOException;
 
 public class SettingsActivity extends AppCompatActivity {
 
@@ -27,6 +33,9 @@ public class SettingsActivity extends AppCompatActivity {
 
         Button submitButton = findViewById(R.id.submit_button);
         submitButton.setOnClickListener(view -> onUpdateButtonClicked());
+
+        Button resetNutritionButton = findViewById(R.id.reset_nutrition_button);
+        resetNutritionButton.setOnClickListener(view -> onResetButtonClicked());
 
         ageInput = findViewById(R.id.ageInput);
         genderInput = findViewById(R.id.settings_genderInput);
@@ -48,6 +57,19 @@ public class SettingsActivity extends AppCompatActivity {
 
         heightInput.setText(Double.toString(userInfo.getHeight()));
         weightInput.setText(Double.toString(userInfo.getWeight()));
+    }
+
+    private void onResetButtonClicked() {
+        DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
+            if(which == DialogInterface.BUTTON_POSITIVE) {
+                UserData.getInstance().clearAllNutrients();
+                this.finish();
+            }
+        };
+
+        AlertDialog.Builder builder = new AlertDialog.Builder(this);
+        builder.setMessage(R.string.resetNutritionConfirmation).setPositiveButton("Yes", dialogClickListener)
+                .setNegativeButton("No", dialogClickListener).show();
     }
 
     private void onUpdateButtonClicked() {

@@ -122,6 +122,13 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/btnUpdate" />
 
+            <Button
+                android:id="@+id/reset_nutrition_button"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/btnResetNutriton" />
+
         </LinearLayout>
 
     </androidx.constraintlayout.widget.ConstraintLayout>
