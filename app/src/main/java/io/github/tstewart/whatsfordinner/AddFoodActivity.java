@@ -17,10 +17,12 @@ import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.res.Configuration;
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
+import android.text.InputType;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -29,7 +31,9 @@ import android.widget.Toast;
 import org.json.JSONException;
 
 import java.io.IOException;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class AddFoodActivity extends AppCompatActivity {
 
@@ -69,20 +73,7 @@ public class AddFoodActivity extends AppCompatActivity {
             String appSecret = getResources().getString(R.string.food_appsecret);
             EdamamConnection connection = new EdamamConnection(appId, appSecret);
 
-            if(requestString.equals("iloveyou")) {
-                try {
-                    ActionBar actionBar = getSupportActionBar();
-                    actionBar.setTitle("I love you too! <3");
-
-                    ColorDrawable colorDrawable
-                            = new ColorDrawable(Color.parseColor("#FF69B4"));
-
-                    actionBar.setBackgroundDrawable(colorDrawable);
-                }
-                catch(NullPointerException ignore) {}
-                return;
-            }
-            else if(requestString.equals("null")) {
+            if(requestString.equals("null") || requestString.equals("undefined")) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
                 startActivity(browserIntent);
             }
@@ -125,14 +116,31 @@ public class AddFoodActivity extends AppCompatActivity {
 
     private void onItemClicked(int position) {
 
+        final EditText input = new EditText(this);
+        input.setInputType(InputType.TYPE_CLASS_NUMBER | InputType.TYPE_NUMBER_FLAG_DECIMAL);
+        input.setRawInputType(Configuration.KEYBOARD_12KEY);
+
         DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
             if(which == DialogInterface.BUTTON_POSITIVE) {
                 Food selectedFood = listItems.get(position);
 
-                Iterable<Nutrient> nutrients = selectedFood.getNutritionalInfo();
+                Iterator<Nutrient> nutrients = selectedFood.getNutritionalInfo().iterator();
+                ArrayList<Nutrient> quantitativeNutrients = new ArrayList<>();
 
-                UserData.getInstance().addNutrients(nutrients.iterator());
-                UserData.getInstance().addCalories((int)Math.floor(selectedFood.getCalories()));
+                String inputText = input.getText().toString();
+                float quantity;
+
+                if(inputText.isEmpty()) quantity = 1;
+                else quantity = Float.parseFloat(inputText);
+
+                while(nutrients.hasNext()) {
+                        Nutrient nutrient = nutrients.next();
+                        nutrient.setAmount(nutrient.getAmount() * quantity);
+                        quantitativeNutrients.add(nutrient);
+                }
+
+                UserData.getInstance().addNutrients(quantitativeNutrients);
+                UserData.getInstance().addCalories((int)Math.floor(selectedFood.getCalories() * quantity));
 
                 try {
                     Serialize.serializeUser(this, UserData.getInstance());
@@ -144,7 +152,8 @@ public class AddFoodActivity extends AppCompatActivity {
         };
 
         AlertDialog.Builder builder = new AlertDialog.Builder(this);
-        builder.setMessage(R.string.addToFoodsConfirmation).setPositiveButton("Yes", dialogClickListener)
-                .setNegativeButton("No", dialogClickListener).show();
+        builder.setMessage(R.string.selectQuantity).setPositiveButton("Ok", dialogClickListener)
+                .setNegativeButton("Cancel", dialogClickListener)
+                .setView(input).show();
     }
 }

@@ -63,6 +63,11 @@ public class SettingsActivity extends AppCompatActivity {
         DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
             if(which == DialogInterface.BUTTON_POSITIVE) {
                 UserData.getInstance().clearAllNutrients();
+                try {
+                    Serialize.serializeUser(this, UserData.getInstance());
+                } catch (IOException e) {
+                    Toast.makeText(this, "Failed to save user information to file.", Toast.LENGTH_LONG).show();
+                }
                 this.finish();
             }
         };
