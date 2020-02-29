@@ -23,6 +23,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.net.Uri;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
@@ -76,6 +77,7 @@ public class AddFoodActivity extends AppCompatActivity {
             if(requestString.equals("null") || requestString.equals("undefined")) {
                 Intent browserIntent = new Intent(Intent.ACTION_VIEW, Uri.parse("https://www.youtube.com/watch?v=dQw4w9WgXcQ"));
                 startActivity(browserIntent);
+                return;
             }
 
             FoodRequest request = new FoodRequest(requestString);
@@ -90,20 +92,21 @@ public class AddFoodActivity extends AppCompatActivity {
                 try {
                     if(response != null) {
                         ArrayList<Food> foods = parser.parseFoodResponse(response);
-                        if (foods != null) {
+
+                        if (foods != null && !foods.isEmpty()) {
                             for (int i = 0; i < foods.size(); i++) {
                                 adapter.add(foods.get(i));
                             }
-                            progressDialog.dismiss();
                             adapter.notifyDataSetChanged();
                         }
-                    }
-                    else {
-
-                        progressDialog.dismiss();
+                        else {
+                            Toast.makeText(this, "No foods could be found that matched this query.", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                } finally {
+                    progressDialog.dismiss();
                 }
             }).execute(new RequestParams(connection, apiRequest));
         }

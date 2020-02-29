@@ -17,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ListView;
+import android.widget.Toast;
 
 import com.google.gson.Gson;
 
@@ -85,19 +86,20 @@ public class GetRecipeActivity extends AppCompatActivity {
                 try {
                     if(response != null) {
                         ArrayList<Recipe> recipes = parser.parseRecipeResponse(response);
-                        if (recipes != null) {
+                        if (recipes != null && !recipes.isEmpty()) {
                             for (int i = 0; i < recipes.size(); i++) {
                                 adapter.add(recipes.get(i));
                             }
-                            progressDialog.dismiss();
                             adapter.notifyDataSetChanged();
                         }
-                    }
-                    else {
-                        progressDialog.dismiss();
+                        else {
+                            Toast.makeText(this, "No recipes could be found that matched this query or that meet your nutritional requirements", Toast.LENGTH_SHORT).show();
+                        }
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
+                } finally {
+                    progressDialog.dismiss();
                 }
             }).execute(new RequestParams(connection, apiRequest));
         }

@@ -41,6 +41,7 @@
 
     <!-- Get recipe activity -->
     <string name="preferredIngredient">Enter preferred ingredient</string>
+    <string name="nutrientReminder">Note: If your nutrients/calories eaten are above your daily limit, a random recipe may be selected instead.</string>
     <string name="selectRecipe">Select a recipe</string>
 
     <!-- Settings activity -->
