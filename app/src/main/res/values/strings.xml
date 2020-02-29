@@ -6,6 +6,8 @@
 
     <string name="first_welcome_msg">Hello! Welcome to the test version of What\'s for Dinner.\nIf you encounter any major issues or bugs please let me know.\n&lt;3 Thomas</string>
 
+    <!-- Intro activity -->
+    <string name="iconAttr">Icon provided by Flaticon</string>
 
     <!-- Sign up / settings activity -->
     <string name="title_activity_sign_up">Sign Up</string>

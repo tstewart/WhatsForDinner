@@ -16,7 +16,7 @@
         android:layout_width="wrap_content"
         android:layout_height="0dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="16dp"
+        android:layout_marginBottom="32dp"
         android:gravity="center"
         android:keepScreenOn="true"
         android:text="@string/title_activity_intro"
@@ -41,6 +41,7 @@
         android:textSize="24sp"
         app:layout_constraintBottom_toTopOf="@+id/title"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
@@ -48,24 +49,41 @@
         android:id="@+id/edamamAttr"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="104dp"
-        android:layout_marginTop="676dp"
+        android:layout_marginStart="92dp"
+        android:layout_marginTop="588dp"
         android:src="@drawable/edamamattr"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/logo"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="245dp"
+        android:layout_height="322dp"
         android:layout_marginEnd="364dp"
-        android:layout_marginBottom="1024dp"
+        android:layout_marginBottom="1250dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.509"
         app:layout_constraintStart_toEndOf="@+id/title"
         app:layout_constraintTop_toBottomOf="@+id/title"
-        tools:srcCompat="@tools:sample/avatars" />
+        tools:srcCompat="@drawable/ic_dish" />
+
+    <TextView
+        android:id="@+id/iconAttr"
+        android:layout_width="0dp"
+        android:layout_height="128dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="1400dp"
+        android:layout_marginEnd="24dp"
+        android:text="@string/iconAttr"
+        android:textAlignment="center"
+        android:textColor="#A7E3FA"
+        android:textSize="12sp"
+        app:layout_constraintBottom_toTopOf="@+id/title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 
     <!-- This FrameLayout insets its children based on system windows using
