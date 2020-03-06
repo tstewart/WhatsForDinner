@@ -1,23 +1,24 @@
 package io.github.tstewart.whatsfordinner.async;
 
 import io.github.tstewart.CalorieLookup.APIRequest;
+import io.github.tstewart.CalorieLookup.Connection;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 
 public class RequestParams {
-    private EdamamConnection edamamConnection;
+    private Connection connection;
     private APIRequest request;
 
-    public RequestParams(EdamamConnection edamamConnection, APIRequest request) {
-        this.edamamConnection = edamamConnection;
+    public RequestParams(Connection connection, APIRequest request) {
+        this.connection = connection;
         this.request = request;
     }
 
-    public EdamamConnection getEdamamConnection() {
-        return edamamConnection;
+    public Connection getConnection() {
+        return connection;
     }
 
-    public void setEdamamConnection(EdamamConnection edamamConnection) {
-        this.edamamConnection = edamamConnection;
+    public void setConnection(Connection connection) {
+        this.connection = connection;
     }
 
     public APIRequest getRequest() {

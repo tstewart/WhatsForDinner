@@ -8,6 +8,7 @@ import android.widget.Toast;
 import org.json.JSONObject;
 
 import io.github.tstewart.CalorieLookup.APIRequest;
+import io.github.tstewart.CalorieLookup.Connection;
 import io.github.tstewart.CalorieLookup.edamam.EdamamConnection;
 import io.github.tstewart.CalorieLookup.error.InvalidRequestException;
 import io.github.tstewart.CalorieLookup.error.InvalidResponseException;
@@ -28,7 +29,7 @@ public class RequestAsync extends AsyncTask<RequestParams, Void, JSONObject> {
     }
     @Override
     protected JSONObject doInBackground(RequestParams... requestParams) {
-        EdamamConnection connection = requestParams[0].getEdamamConnection();
+        Connection connection = requestParams[0].getConnection();
         APIRequest apiRequest = requestParams[0].getRequest();
 
         try {
