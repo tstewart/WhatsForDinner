@@ -133,8 +133,14 @@ public class AddFoodActivity extends AppCompatActivity {
                 String inputText = input.getText().toString();
                 float quantity;
 
-                if(inputText.isEmpty()) quantity = 1;
-                else quantity = Float.parseFloat(inputText);
+                try {
+                    if(inputText.isEmpty()) quantity = 1;
+                    else quantity = Float.parseFloat(inputText);
+                }
+                catch(NumberFormatException e) {
+                    Toast.makeText(this, "Please enter a valid quantity.", Toast.LENGTH_SHORT).show();
+                    return;
+                }
 
                 if(quantity > 100) {
                     Toast.makeText(this, "Please enter a quantity lower than 100.", Toast.LENGTH_SHORT).show();
