@@ -10,6 +10,10 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+/**
+ * Activity to sign up and input user data used to calculate requirements.
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class SignUpActivity extends AppCompatActivity {
 
     private TextView ageInput;

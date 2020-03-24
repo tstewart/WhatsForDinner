@@ -19,6 +19,10 @@ import android.widget.Toast;
 
 import java.io.IOException;
 
+/**
+ * Activity to edit user data and reset nutrient intake
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class SettingsActivity extends AppCompatActivity {
 
     private TextView ageInput;
@@ -62,8 +66,10 @@ public class SettingsActivity extends AppCompatActivity {
     private void onResetButtonClicked() {
         DialogInterface.OnClickListener dialogClickListener = (dialog, which) -> {
             if(which == DialogInterface.BUTTON_POSITIVE) {
+                // Clear all nutrient intake.
                 UserData.getInstance().clearAllNutrients();
                 try {
+                    // Serialize user data to file.
                     Serialize.serializeUser(this, UserData.getInstance());
                 } catch (IOException e) {
                     Toast.makeText(this, "Failed to save user information to file.", Toast.LENGTH_LONG).show();

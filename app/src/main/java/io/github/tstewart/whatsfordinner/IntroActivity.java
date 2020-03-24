@@ -19,7 +19,10 @@ import com.tbruyelle.rxpermissions2.RxPermissions;
 import java.io.File;
 import java.io.IOException;
 
-
+/**
+ * Activity to show attribution and allow the app to load data in the background
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class IntroActivity extends FragmentActivity {
 
     @SuppressLint("CheckResult")
@@ -27,10 +30,12 @@ public class IntroActivity extends FragmentActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        // Check for external write permissions
         RxPermissions rxPermissions = new RxPermissions(this);
         rxPermissions
                 .request(Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 .subscribe(granted -> {
+                    // If permission granted by user, deserialize user data.
                     if (granted) {
                         try {
                             File file = getFileStreamPath(getResources().getString(R.string.user_data_file_location));
@@ -39,12 +44,16 @@ public class IntroActivity extends FragmentActivity {
                                 Deserialize.deserializeUser(this);
                             }
                             else {
+                                // If file doesn't exist or cant be read, show an error.
+                                // This is not sent as a toast to the user as there are cases wherein the user data does not exist.
+                                // E.g. Clearing cache, or on first start.
                                 System.err.println("User data file does not exist.");
                             }
                         } catch (IOException | ClassNotFoundException e) {
                             e.printStackTrace();
                         }
                     } else {
+                        // If write permission is not granted, remind the user that it is required.
                         Toast.makeText(this, "Write access is requiured to save user data.", Toast.LENGTH_LONG).show();
                     }
                 });
@@ -52,15 +61,17 @@ public class IntroActivity extends FragmentActivity {
         setContentView(R.layout.activity_intro);
 
 
-        /* New Handler to start the Menu-Activity
-         * and close this Splash-Screen after some seconds.*/
-        long INTRO_DISPLAY_LENGTH = 3000;
+        // Number of milliseconds the intro will be displayed for.
+        final long INTRO_DISPLAY_LENGTH = 3000;
+
+        // Handled once the time has allotted.
         new Handler().postDelayed(() -> {
-            /* Create an Intent that will start the Menu-Activity. */
+            // If user data exists, take the user to the Main Activity
             if(UserData.getInstance().getInfo() != null) {
                 Intent mainActivity = new Intent(IntroActivity.this, MainActivity.class);
                 IntroActivity.this.startActivity(mainActivity);
             }
+            // Else, take the user to the sign up page to input their details.
             else {
                 Intent signUpIntent = new Intent(IntroActivity.this, SignUpActivity.class);
                 IntroActivity.this.startActivity(signUpIntent);

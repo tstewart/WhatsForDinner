@@ -14,12 +14,27 @@ import io.github.tstewart.NutritionCalculator.UserInfo;
 import io.github.tstewart.whatsfordinner.data.Serialize;
 import io.github.tstewart.whatsfordinner.user.UserData;
 
+/**
+ * Activity utility class
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class ActivityHelper {
 
+    /**
+     * Launch an activity from the context Activity.
+     * @param context Context Activity
+     * @param activityClass Activity to be opened.
+     */
     public static void launchActivity(Context context, Class<? extends Activity> activityClass) {
         context.startActivity(new Intent(context, activityClass));
     }
 
+    /**
+     * Updates the user settings and saves them to file.
+     * @param context Application context
+     * Age, gender, weight, height inputs
+     * @throws IllegalArgumentException If an input value is invalid.
+     */
     public static void updateUserSettings(Activity context,
                                           TextView ageInput, RadioGroup genderInput,
                                           TextView heightInput, TextView weightInput) throws IllegalArgumentException {
@@ -28,6 +43,7 @@ public class ActivityHelper {
         String heightText = heightInput.getText().toString();
         String weightText = weightInput.getText().toString();
 
+        // If a value doesn't exist, throw an error
         if(ageText.length() == 0
                 || genderInput.getCheckedRadioButtonId() == -1
                 || heightText.length() == 0
@@ -40,6 +56,7 @@ public class ActivityHelper {
         double height;
         double weight;
 
+        // Try and parse the age, if the input is not a number, return an error.
         try {
             age = Integer.parseInt(ageText);
         }
@@ -56,6 +73,7 @@ public class ActivityHelper {
             gender = UserInfo.Gender.FEMALE;
         }
 
+        // Try and parse the height as a double.
         try {
             height = Double.parseDouble(heightText);
         }
@@ -63,6 +81,7 @@ public class ActivityHelper {
             throw new IllegalArgumentException("Please enter a valid height");
         }
 
+        // Try and parse the weight as a double.
         try {
             weight = Double.parseDouble(weightText);
         }

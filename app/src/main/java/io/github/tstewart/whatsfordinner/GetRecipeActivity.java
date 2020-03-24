@@ -25,6 +25,10 @@ import org.json.JSONException;
 
 import java.util.ArrayList;
 
+/**
+ * Activity to get a recipe using data from your eaten foods.
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class GetRecipeActivity extends AppCompatActivity {
 
     private EditText recipeRequestInput;
@@ -65,10 +69,12 @@ public class GetRecipeActivity extends AppCompatActivity {
 
     private void onSearchButtonClicked() {
 
+        // Clear existing responses
         clearListResponses();
 
         String requestString = recipeRequestInput.getText().toString();
 
+        // If request string is not empty, and only contains accepted characters
         if(!requestString.equals("") && requestString.matches("[a-zA-Z ]+")) {
             String appId = getResources().getString(R.string.recipe_appid);
             String appSecret = getResources().getString(R.string.recipe_appsecret);
@@ -77,6 +83,7 @@ public class GetRecipeActivity extends AppCompatActivity {
             RecipeRequest request = new RecipeRequest(requestString, UserData.getInstance().getInfo(), UserData.getInstance().getNutrientsEaten(), UserData.getInstance().getCaloriesEaten());
             APIRequest apiRequest = new APIRequest(request);
 
+            // Show progress dialog whilst contacting Edamam
             ProgressDialog progressDialog = new ProgressDialog(this);
             progressDialog.setMessage("Please wait...");
             progressDialog.show();
@@ -90,6 +97,7 @@ public class GetRecipeActivity extends AppCompatActivity {
                             for (int i = 0; i < recipes.size(); i++) {
                                 adapter.add(recipes.get(i));
                             }
+                            // Update listview of responses
                             adapter.notifyDataSetChanged();
                         }
                         else {
@@ -105,6 +113,7 @@ public class GetRecipeActivity extends AppCompatActivity {
         }
     }
 
+    // Clear existing responses
     private void clearListResponses() {
         adapter.clear();
         listItems.clear();

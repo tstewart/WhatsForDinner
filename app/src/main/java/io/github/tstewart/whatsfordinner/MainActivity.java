@@ -19,8 +19,13 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 
+/**
+ * Launcher activity to access the features of the application.
+ * Created by Thomas Stewart https://github.com/tstewart
+ */
 public class MainActivity extends AppCompatActivity {
 
+    // Get preferences, and packageId to determine if this is the first time the app has been run from the user's phone
     SharedPreferences prefs = null;
     private final String packageId = "io.github.tstewart.whatsfordinner";
 
@@ -51,6 +56,7 @@ public class MainActivity extends AppCompatActivity {
             recipeLink.setText(UserData.getInstance().getRecentRecipe().getRecipeUrl());
         }
 
+        // Calculate and show the nutrient requirements of the user.
         setNutrientRequirements();
     }
 
@@ -59,11 +65,13 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         setNutrientRequirements();
 
+        // If the value firstrun is true, then show a welcome message.
         if (prefs.getBoolean("firstrun", true)) {
 
             AlertDialog.Builder builder = new AlertDialog.Builder(this);
             builder.setMessage(getString(R.string.first_welcome_msg)).show();
 
+            // Set firstrun to false, so this welcome message never appears again.
             prefs.edit().putBoolean("firstrun", false).apply();
         }
     }
@@ -84,7 +92,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onCreateOptionsMenu(menu);
     }
 
-    // handle button activities
+    // handle settings button click
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
@@ -96,6 +104,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
+    // Set the user's required nutrients in the textviews of the main menu.
     private void setNutrientRequirements() {
 
         UserData instance = UserData.getInstance();
